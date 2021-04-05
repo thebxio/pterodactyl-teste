@@ -11,6 +11,7 @@ ENV         DEBIAN_FRONTEND noninteractive
 # Install Dependencies
 RUN         dpkg --add-architecture i386 \
             && apt-get update \
+            && apt-get install wget \
             && useradd -m -d /mnt/server/ container
 
 USER        container
