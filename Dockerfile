@@ -11,12 +11,12 @@ ENV         DEBIAN_FRONTEND noninteractive
 # Install Dependencies
 RUN         dpkg --add-architecture i386 \
             && apt-get update \
-            && apt-get install wget \
-            && useradd -m -d /mnt/server/ container
+            && apt-get install ca-certificates wget \
+            && useradd -m -d /home/container container
 
 USER        container
-ENV         HOME /mnt/server/
-WORKDIR     /mnt/server/
+ENV         HOME /home/container
+WORKDIR     /home/container
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         ["/bin/bash", "/entrypoint.sh"]
