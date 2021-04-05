@@ -14,6 +14,7 @@ RUN         dpkg --add-architecture i386 \
             && apt-get install ca-certificates wget \
             && useradd -m -d /home/container container
 
+RUN         mkdir /home/container
 USER        container
 ENV         HOME /home/container
 WORKDIR     /home/container
