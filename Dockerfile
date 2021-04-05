@@ -1,21 +1,21 @@
-# ----------------------------------
-# Pterodactyl Core Dockerfile
-# Environment: Source Engine
-# Minimum Panel Version: 0.6.0
-# ----------------------------------
 FROM        ubuntu:18.04
 
-LABEL       author="Pterodactyl Software" maintainer="support@pterodactyl.io"
+LABEL       author="denNorske" maintainer="den@ducky.rocks"
 
-ENV         DEBIAN_FRONTEND noninteractive
-# Install Dependencies
-RUN         dpkg --add-architecture i386
-RUN         useradd -m -d /mnt/server/ container
+RUN         dpkg --add-architecture i386 \
+            && apt-get update -qq\
+            && apt-get install -qq ca-certificates wget\
+            && useradd -d /home/container -m container
 
-RUN         mkdir /mnt/server/
+
+
 USER        container
-ENV         HOME /mnt/server/
-WORKDIR     /mnt/server/
+
+
+ENV         USER=container HOME=/home/container
+
+WORKDIR     /home/container
 
 COPY        ./entrypoint.sh /entrypoint.sh
+
 CMD         ["/bin/bash", "/entrypoint.sh"]
