@@ -11,11 +11,11 @@ ENV         DEBIAN_FRONTEND noninteractive
 # Install Dependencies
 RUN         dpkg --add-architecture i386 \
             && apt-get update \
-            && useradd -m -d /home/container container
+            && useradd -m -d /mnt/server/ container
 
 USER        container
-ENV         HOME /home/container
-WORKDIR     /home/container
+ENV         HOME /mnt/server/
+WORKDIR     /mnt/server/
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         ["/bin/bash", "/entrypoint.sh"]
