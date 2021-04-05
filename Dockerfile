@@ -12,7 +12,6 @@ ENV         DEBIAN_FRONTEND noninteractive
 RUN         dpkg --add-architecture i386
 RUN         useradd -m -d /mnt/server/ container
 
-RUN         mkdir /mnt/server/
 USER        container
 ENV         HOME /mnt/server/
 WORKDIR     /mnt/server/
